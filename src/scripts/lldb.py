@@ -165,10 +165,6 @@ def autoexit_command(debugger, command, result, internal_dict):
                 printBacktraceTime = time.time() + 5
         elif state == lldb.eStateStepping or state == lldb.eStateConnected:
             continue
-        elif state == lldb.eStateExited:
-            sys.stdout.write( '\\nPROCESS_EXITED\\n' )
-            CloseOut()
-            os._exit(process.GetExitStatus())
         else:
             if state == lldb.eStateStopped:
                 sys.stdout.write( '\\nPROCESS_STOPPED\\n' )
