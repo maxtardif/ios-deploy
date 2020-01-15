@@ -63,11 +63,11 @@ def run_command(debugger, command, result, internal_dict):
     launchInfo.SetEnvironmentEntries(envs_arr, True)
     
     lldb.target.Launch(launchInfo, startup_error)
-    if error.Fail():
-        if ': Locked' in str(error):
+    if startup_error.Fail():
+        if ': Locked' in str(startup_error):
             print('\\nDevice Locked\\n')
         else:
-            print(str(error))
+            print(str(startup_error))
         #force exit to make sure autoexit or safequit don't end up waiting forever
         os._exit({exitcode_error})
 
